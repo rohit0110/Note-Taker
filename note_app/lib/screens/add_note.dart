@@ -12,7 +12,7 @@ class AddNote extends StatefulWidget {
 class _AddNoteState extends State<AddNote> {
   String title = '';
   String body = '';
-  DateTime creationDate = DateTime.now();
+  String creationDate = "";
 
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
@@ -52,10 +52,13 @@ class _AddNoteState extends State<AddNote> {
           setState(() {
             title = titleController.text;
             body = bodyController.text;
-            creationDate = DateTime.now();
+            creationDate = DateTime.now().toString();
           });
-          NoteModel note =
-              NoteModel(title: title, body: body, creationDate: creationDate);
+          NoteModel note = NoteModel(
+              id: UniqueKey().toString(),
+              title: title,
+              body: body,
+              creationDate: creationDate);
           addNote(note);
           Navigator.pushNamedAndRemoveUntil(context, "/", ((route) => false));
         },

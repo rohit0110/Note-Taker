@@ -22,7 +22,7 @@ class DatabaseProvider {
         onCreate: ((db, version) async {
       await db.execute(''' 
         CREATE TABLE notes (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          id TEXT PRIMARY KEY,
           title TEXT,
           body TEXT,
           creationDate DATE
@@ -49,5 +49,12 @@ class DatabaseProvider {
       print(resultMap);
       return resultMap.isEmpty ? "" : resultMap;
     }
+  }
+
+  deleteNote(String id) async {
+    final db = await database;
+    print(id);
+    await db!.rawDelete("DELETE FROM notes WHERE id = ?", [id]);
+    print("deleted");
   }
 }

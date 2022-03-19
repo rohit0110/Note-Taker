@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/db/database_provider.dart';
+import 'package:note_app/model/note_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView.builder(
                         itemCount: noteData.data.length,
                         itemBuilder: (context, index) {
+                          String id = noteData.data[index]['id'];
                           String title = noteData.data[index]['title'];
                           String body = noteData.data[index]['body'];
                           String creationDate =
@@ -48,6 +50,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ListTile(
                               title: Text(title),
                               subtitle: Text(body),
+                              onTap: () {
+                                // NoteModel note = noteData.data[index];
+                                Navigator.pushNamed(context, "/ShowNote",
+                                    arguments: NoteModel(
+                                        id: id,
+                                        title: title,
+                                        body: body,
+                                        creationDate: creationDate));
+                              },
                             ),
                           );
                         }),
