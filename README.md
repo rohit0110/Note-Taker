@@ -5,9 +5,13 @@ A Note Taking App in Flutter using sqflite
 # Current Functionalities
 Create Notes
 
-# Need To Add
-Delete Note
+Read Notes
 
-Edit note
+Delete Notes
+
+# Need To Add
+
+
+Update notes
 
 Better UI
