@@ -1,17 +1,15 @@
 # Note-Taker
 
-A Note Taking App in Flutter using sqflite
+A Note Taking App in Flutter using sqflite with CRUD functionalties.
 
 # Current Functionalities
 Create Notes
 
-Delete Note
+Read Notes
 
-Edit note
+Delete Notes
 
 # Need To Add
-
-
-
+Edit notes
 
 Better UI
