@@ -19,7 +19,6 @@ class _AddNoteState extends State<AddNote> {
 
   addNote(NoteModel note) {
     DatabaseProvider.db.addNewNote(note);
-    print("Added Note");
   }
 
   @override

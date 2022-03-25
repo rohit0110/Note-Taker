@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:note_app/model/note_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 class DatabaseProvider {
   DatabaseProvider._();
@@ -35,14 +33,12 @@ class DatabaseProvider {
     final db = await database;
     db!.insert("notes", note.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
-    print("inserts");
   }
 
   Future<dynamic> getNotes() async {
     final db = await database;
     var res = await db!.query("notes");
     if (res.isEmpty) {
-      // print(res);
       return "";
     } else {
       var resultMap = res.toList();
@@ -53,8 +49,12 @@ class DatabaseProvider {
 
   deleteNote(String id) async {
     final db = await database;
-    print(id);
     await db!.rawDelete("DELETE FROM notes WHERE id = ?", [id]);
-    print("deleted");
+  }
+
+  updateNotes(String id, String body, String title) async {
+    final db = await database;
+    await db!.rawUpdate(
+        "UPDATE notes SET body = ?, title = ? WHERE id = ?", [body, title, id]);
   }
 }
